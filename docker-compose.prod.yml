@@ -1,0 +1,16 @@
+services:
+  db:
+    ports: []
+    restart: unless-stopped
+
+  api:
+    ports:
+      - "${API_PORT:-8081}:8081"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
